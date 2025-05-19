@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Анализ военной песни</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Анализировать</button>
+</form>
+
+{% if show_result %}
+<div class="results">
+    <h3>Обработанное аудио</h3>
+    <audio controls src="{{ processed_audio }}"></audio>
+    
+    <h3>Распознанный текст</h3>
+    <div class="text-box">{{ text }}</div>
+    
+    <h3>Метаданные</h3>
+    <ul>
+        <li>Предполагаемый год создания: {{ year }}</li>
+        <li>Основные темы: {{ themes|join:", " }}</li>
+        <li>Эмоциональная окраска: {{ emotion }}</li>
+        <li>Возможные авторы: {{ authors|join:", "|default:"не определены" }}</li>
+    </ul>
+    
+    <h4>Распознанные объекты:</h4>
+    <div class="entities">
+        {% for entity in entities %}
+            <span class="entity-tag">{{ entity }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<style>
+.text-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    white-space: pre-wrap;
+}
+.entity-tag {
+    background: #e0f0ff;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 2px;
+    display: inline-block;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,9 @@
+Django>=4.0
+torchaudio
+demucs
+openai-whisper
+bertopic
+transformers
+librosa
+numpy
+scikit-learn
