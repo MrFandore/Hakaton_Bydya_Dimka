@@ -36,7 +36,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # Для админ-панели
                 'django.contrib.auth.context_processors.auth',  # Обязательно для админки
                 'django.contrib.messages.context_processors.messages',  # Для сообщений
-                'django.template.context_processors.media',  # Ваш существующий процессор
+                'django.template.context_processors.media', 
             ],
         },
     },
