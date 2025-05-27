@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="edit-container">
+    <h1>Редактирование: {{ file.title }}</h1>
+
+    <form method="POST">
+        <div class="form-group">
+            <label>Название:</label>
+            <input type="text" name="title" value="{{ file.title }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Теги:</label>
+            <input type="text" name="tags" value="{{ file.tags }}">
+        </div>
+
+        <button type="submit" class="btn btn-save">Сохранить</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-cancel">Отмена</a>
+    </form>
+</div>
+{% endblock %}

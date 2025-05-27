@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <header class="player-header">
+        <h1>Музыкальная библиотека</h1>
+        <form method="get" class="form-inline">
+            <input type="text" name="tag" placeholder="Тег" value="{{ request.args.get('tag', '') }}">
+            <input type="text" name="author" placeholder="Автор" value="{{ request.args.get('author', '') }}">
+            <input type="text" name="year" placeholder="Год" value="{{ request.args.get('year', '') }}">
+            <button type="submit" class="btn btn-primary">Фильтровать</button>
+        </form>
+    </header>
+
+    <div class="audio-list">
+        {% for file in files %}
+        <div class="audio-card">
+            <h3>{{ file.title }}</h3>
+            <p>Автор: {{ file.author }} | Год: {{ file.year }}</p>
+            <p>Теги: {{ file.tags }}</p>
+            <a href="{{ url_for('file_detail', file_id=file.id) }}" class="btn btn-primary">Слушать</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
